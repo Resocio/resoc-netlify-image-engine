@@ -2,3 +2,10 @@
   directory = "functions/"
   node_bundler = "esbuild"
   included_files = ["resoc-templates/**"]
+  external_node_modules = [
+    "chrome-aws-lambda",
+    "puppeteer-core",
+    "@resoc/core",
+    "@resoc/create-img-core",
+    "@netlify/functions"
+  ]
