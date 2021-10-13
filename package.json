@@ -1,0 +1,22 @@
+{
+  "name": "resoc-netlify-image-engine",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Resocio/resoc-netlify-image-engine.git"
+  },
+  "keywords": [
+    "resoc"
+  ],
+  "author": "Philippe Bernard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Resocio/resoc-netlify-image-engine/issues"
+  },
+  "homepage": "https://github.com/Resocio/resoc-netlify-image-engine#readme"
+}
