@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/Resocio/resoc-netlify-image-engine/issues"
   },
-  "homepage": "https://github.com/Resocio/resoc-netlify-image-engine#readme"
+  "homepage": "https://github.com/Resocio/resoc-netlify-image-engine#readme",
+  "dependencies": {
+    "@netlify/functions": "^0.7.2"
+  }
 }
