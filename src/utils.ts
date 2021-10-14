@@ -1,11 +1,16 @@
 import { ImageTemplate, ParamValue, ParamValues, TemplateParam } from '@resoc/core'
+import queryString, { ParsedQuery } from 'query-string'
 
 interface EventQueryStringParameters {
   [name: string]: string | undefined
 }
 
-export const paramValuesFromQueryParams = (
-  templateParams: TemplateParam[], queryParams: EventQueryStringParameters | null
+export const parseRawQuery = (rawQuery: string): ParsedQuery => (
+  queryString.parse(rawQuery)
+)
+
+export const queryParamsToParamValues = (
+  templateParams: TemplateParam[], queryParams: ParsedQuery
 ): ParamValues => {
   const values: ParamValues = {};
 

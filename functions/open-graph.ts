@@ -6,7 +6,7 @@ import { FacebookOpenGraph } from '@resoc/core'
 import { loadLocalTemplate, renderLocalTemplate, convertUrlToImage } from '@resoc/create-img-core'
 import { ScreenshotOptions } from 'puppeteer-core'
 
-import { paramValuesFromQueryParams } from '../src/utils'
+import { parseRawQuery, queryParamsToParamValues } from '../src/utils'
 
 const handler: Handler = async (event, context) => {
   try {
@@ -20,7 +20,7 @@ const handler: Handler = async (event, context) => {
 
     const templateDir = 'resoc-templates/title-description';
     const template = await loadLocalTemplate(`${templateDir}/resoc.manifest.json`);
-    const paramValues = paramValuesFromQueryParams(template.parameters, event.queryStringParameters);
+    const paramValues = queryParamsToParamValues(template.parameters, parseRawQuery(event.rawQuery));
     console.log("Parameters", paramValues);
 
     const htmlPath = await renderLocalTemplate(

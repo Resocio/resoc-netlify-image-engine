@@ -1,8 +1,14 @@
 import { ParamType } from '@resoc/core';
-import { paramValuesFromQueryParams } from './utils'
+import { parseRawQuery, queryParamsToParamValues } from './utils'
 
-test('paramValuesFromQueryParams', () => {
-  expect(paramValuesFromQueryParams([
+test('parseRawQuery', () => {
+  expect(parseRawQuery('')).toEqual({});
+  expect(parseRawQuery('title=Hello')).toEqual({ title: 'Hello'});
+  expect(parseRawQuery('title=Hello&description=World')).toEqual({ title: 'Hello', description: 'World' });
+});
+
+test('queryParamsToParamValues', () => {
+  expect(queryParamsToParamValues([
     { name: 'title', type: ParamType.String, demoValue: 'Demo' }
   ], {
     title: 'Hello!!', dummy: 'stuff'
@@ -10,7 +16,7 @@ test('paramValuesFromQueryParams', () => {
     title: 'Hello!!'
   });
 
-  expect(paramValuesFromQueryParams([
+  expect(queryParamsToParamValues([
     { name: 'title', type: ParamType.String, demoValue: 'Demo title' },
     { name: 'description', type: ParamType.String, demoValue: 'Demo description' },
   ], {
@@ -19,7 +25,7 @@ test('paramValuesFromQueryParams', () => {
     title: 'Hello!!'
   });
 
-  expect(paramValuesFromQueryParams([
+  expect(queryParamsToParamValues([
     { name: 'title', type: ParamType.String, demoValue: 'Demo title' },
     { name: 'description', type: ParamType.String, demoValue: 'Demo description' },
   ], null)).toEqual({});
