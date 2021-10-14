@@ -1,4 +1,4 @@
-import { Handler, builder } from '@netlify/functions'
+import { Handler } from '@netlify/functions'
 
 import path from 'path'
 import chromium from 'chrome-aws-lambda'
@@ -8,7 +8,7 @@ import { ScreenshotOptions } from 'puppeteer-core'
 
 import { parseRawQuery, queryParamsToParamValues } from '../src/utils'
 
-const handler: Handler = async (event, context) => {
+export const handler: Handler = async (event, context) => {
   try {
     const browser = await chromium.puppeteer.launch({
       executablePath: await chromium.executablePath,
@@ -67,5 +67,3 @@ const handler: Handler = async (event, context) => {
     };
   }
 };
-
-exports.handler = builder(handler);
