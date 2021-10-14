@@ -7,7 +7,7 @@ import { loadLocalTemplate, renderLocalTemplate, convertUrlToImage } from '@reso
 import { ScreenshotOptions } from 'puppeteer-core'
 import Route from 'route-parser'
 
-import { parseRawQuery, queryParamsToParamValues, routeParamsToImageFormat } from '../src/utils'
+import { parseRawQuery, queryParamsToParamValues, parseImageFormat } from '../src/utils'
 
 export const handler: Handler = async (event, context) => {
   try {
@@ -30,7 +30,7 @@ export const handler: Handler = async (event, context) => {
       templateDir
     );
 
-    const format = routeParamsToImageFormat(routeParams['format']);
+    const format = parseImageFormat(routeParams['format']);
     const imageFormat: ScreenshotOptions = {
       type: format
     };

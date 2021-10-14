@@ -24,7 +24,7 @@ export const queryParamsToParamValues = (
   return values;
 }
 
-export const routeParamsToImageFormat = (formatParam: string | undefined | null): 'png' | 'jpeg' | 'webp' => {
+export const parseImageFormat = (formatParam: string | undefined | null): 'png' | 'jpeg' | 'webp' => {
   switch(formatParam) {
     case('jpg'):
     case('jpeg'):

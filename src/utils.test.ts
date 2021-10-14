@@ -31,11 +31,11 @@ test('queryParamsToParamValues', () => {
   ], null)).toEqual({});
 });
 
-test('routeParamsToImageFormat', () => {
-  expect(routeParamsToImageFormat('jpg')).toEqual('jpeg');
-  expect(routeParamsToImageFormat('jpeg')).toEqual('jpeg');
-  expect(routeParamsToImageFormat('png')).toEqual('png');
-  expect(routeParamsToImageFormat('webp')).toEqual('webp');
-  expect(routeParamsToImageFormat(null)).toEqual('jpeg');
-  expect(() => routeParamsToImageFormat('doc')).toThrow();
+test('parseImageFormat', () => {
+  expect(parseImageFormat('jpg')).toEqual('jpeg');
+  expect(parseImageFormat('jpeg')).toEqual('jpeg');
+  expect(parseImageFormat('png')).toEqual('png');
+  expect(parseImageFormat('webp')).toEqual('webp');
+  expect(parseImageFormat(null)).toEqual('jpeg');
+  expect(() => parseImageFormat('doc')).toThrow();
 });
