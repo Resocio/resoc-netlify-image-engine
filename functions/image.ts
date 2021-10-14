@@ -2,16 +2,16 @@ import { Handler } from '@netlify/functions'
 
 import path from 'path'
 import chromium from 'chrome-aws-lambda'
-import { FacebookOpenGraph } from '@resoc/core'
+import { demoParamValues, FacebookOpenGraph, ParamValue, ParamValues } from '@resoc/core'
 import { loadLocalTemplate, renderLocalTemplate, convertUrlToImage } from '@resoc/create-img-core'
 import { ScreenshotOptions } from 'puppeteer-core'
 import Route from 'route-parser'
 
-import { parseRawQuery, queryParamsToParamValues, parseImageFormat, parseDimensions } from '../src/utils'
+import { parseRawQuery, queryParamsToParamValues, parseImageFormat, parseDimensions, parseRequestType } from '../src/utils'
 
 export const handler: Handler = async (event, context) => {
   try {
-    const route = new Route('/templates/:template/images/:dimensions.:format');
+    const route = new Route('/templates/:template/:requestType/:dimensions.:format');
     const routeParams = route.match(event.path);
     if (!routeParams) {
       throw "Internal error: no route parameters";
@@ -22,8 +22,14 @@ export const handler: Handler = async (event, context) => {
     const template = await loadLocalTemplate(`${templateDir}/resoc.manifest.json`);
     const imageDimensions = parseDimensions(routeParams['dimensions']);
 
-    const rawParams = event.body ? JSON.parse(event.body) : parseRawQuery(event.rawQuery);
-    const paramValues = queryParamsToParamValues(template.parameters, rawParams);
+    const requestType = parseRequestType(routeParams['requestType']);
+    let paramValues: ParamValues;
+    if (requestType === 'image') {
+      const rawParams = event.body ? JSON.parse(event.body) : parseRawQuery(event.rawQuery);
+      paramValues = queryParamsToParamValues(template.parameters, rawParams);
+    } else {
+      paramValues = demoParamValues(template.parameters);
+    }
 
     const htmlPath = await renderLocalTemplate(
       template,

@@ -14,7 +14,7 @@
   ]
 
 [[redirects]]
-  from = "/templates/:template/images/:dimensions*"
+  from = "/templates/:template/:requestType/:dimensions*"
   to = "/.netlify/functions/image"
   status = 200
 

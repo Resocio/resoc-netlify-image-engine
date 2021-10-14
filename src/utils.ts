@@ -61,3 +61,14 @@ export const parseDimensions = (dimsParam: string | undefined | null): ImageReso
     height: parseInt(matcher[2])
   }
 }
+
+export const parseRequestType = (requestTypeParam: string | undefined | null): 'image' | 'demo' => {
+  switch(requestTypeParam) {
+    case('images'):
+      return 'image';
+    case('demos'):
+      return 'demo';
+    default:
+      throw `Invalid request type: ${requestTypeParam}`;
+  }
+}

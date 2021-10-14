@@ -1,5 +1,5 @@
 import { ParamType } from '@resoc/core';
-import { parseDimensions, parseRawQuery, queryParamsToParamValues, parseImageFormat } from './utils'
+import { parseDimensions, parseRawQuery, queryParamsToParamValues, parseImageFormat, parseRequestType } from './utils'
 
 test('parseRawQuery', () => {
   expect(parseRawQuery('')).toEqual({});
@@ -47,4 +47,12 @@ test('parseDimensions', () => {
   expect(() => parseDimensions('NOPE')).toThrow();
   expect(() => parseDimensions(null)).toThrow();
   expect(() => parseDimensions(undefined)).toThrow();
+});
+
+test('parseRequestType', () => {
+  expect(parseRequestType('images')).toEqual('image');
+  expect(parseRequestType('demos')).toEqual('demo');
+  expect(() => parseRequestType('WHAT')).toThrow();
+  expect(() => parseRequestType(null)).toThrow();
+  expect(() => parseRequestType(undefined)).toThrow();
 });
