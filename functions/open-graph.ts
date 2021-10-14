@@ -16,11 +16,16 @@ const handler: Handler = async (event, context) => {
       headless: chromium.headless
     });
 
+    console.log("Event", event);
+
     const templateDir = 'resoc-templates/title-description';
     const template = await loadLocalTemplate(`${templateDir}/resoc.manifest.json`);
+    const paramValues = paramValuesFromQueryParams(template.parameters, event.queryStringParameters);
+    console.log("Parameters", paramValues);
+
     const htmlPath = await renderLocalTemplate(
       template,
-      paramValuesFromQueryParams(template.parameters, event.queryStringParameters),
+      paramValues,
       FacebookOpenGraph,
       templateDir
     );
