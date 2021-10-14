@@ -1,3 +1,6 @@
+[build]
+  publish = "resoc-templates"
+
 [functions]
   directory = "functions/"
   node_bundler = "esbuild"
@@ -13,4 +16,9 @@
 [[redirects]]
   from = "/templates/:template/images/:dimensions*"
   to = "/.netlify/functions/image"
+  status = 200
+
+[[redirects]]
+  from = "/templates/:template/content/*"
+  to = "/:template/:splat"
   status = 200
