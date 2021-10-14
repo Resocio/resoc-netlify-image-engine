@@ -18,11 +18,12 @@ export const handler: Handler = async (event, context) => {
     }
 
     const templateName = routeParams['template'];
-
     const templateDir = `resoc-templates/${templateName}`;
     const template = await loadLocalTemplate(`${templateDir}/resoc.manifest.json`);
-    const paramValues = queryParamsToParamValues(template.parameters, parseRawQuery(event.rawQuery));
     const imageDimensions = parseDimensions(routeParams['dimensions']);
+
+    const rawParams = event.body ? JSON.parse(event.body) : parseRawQuery(event.rawQuery);
+    const paramValues = queryParamsToParamValues(template.parameters, rawParams);
 
     const htmlPath = await renderLocalTemplate(
       template,
