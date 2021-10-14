@@ -5,23 +5,23 @@ import chromium from 'chrome-aws-lambda'
 import { FacebookOpenGraph } from '@resoc/core'
 import { loadLocalTemplate, renderLocalTemplate, convertUrlToImage } from '@resoc/create-img-core'
 import { ScreenshotOptions } from 'puppeteer-core'
+import Route from 'route-parser'
 
-import { parseRawQuery, queryParamsToParamValues } from '../src/utils'
+import { parseRawQuery, queryParamsToParamValues, routeParamsToImageFormat } from '../src/utils'
 
 export const handler: Handler = async (event, context) => {
   try {
-    const browser = await chromium.puppeteer.launch({
-      executablePath: await chromium.executablePath,
-      args: chromium.args,
-      headless: chromium.headless
-    });
+    const route = new Route('/templates/:template/images/open-graph.:format');
+    const routeParams = route.match(event.path);
+    if (!routeParams) {
+      throw "Internal error: no route parameters";
+    }
 
-    console.log("Event", event);
+    const templateName = routeParams['template'];
 
-    const templateDir = 'resoc-templates/title-description';
+    const templateDir = `resoc-templates/${templateName}`;
     const template = await loadLocalTemplate(`${templateDir}/resoc.manifest.json`);
     const paramValues = queryParamsToParamValues(template.parameters, parseRawQuery(event.rawQuery));
-    console.log("Parameters", paramValues);
 
     const htmlPath = await renderLocalTemplate(
       template,
@@ -30,13 +30,19 @@ export const handler: Handler = async (event, context) => {
       templateDir
     );
 
-    const format = 'jpeg';
+    const format = routeParamsToImageFormat(routeParams['format']);
     const imageFormat: ScreenshotOptions = {
       type: format
     };
     if (format === 'jpeg') {
       imageFormat.quality = 80;
     }
+
+    const browser = await chromium.puppeteer.launch({
+      executablePath: await chromium.executablePath,
+      args: chromium.args,
+      headless: chromium.headless
+    });
 
     const image = await convertUrlToImage(
       `file:///${htmlPath}`, {

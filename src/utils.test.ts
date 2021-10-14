@@ -1,5 +1,5 @@
 import { ParamType } from '@resoc/core';
-import { parseRawQuery, queryParamsToParamValues } from './utils'
+import { parseRawQuery, queryParamsToParamValues, routeParamsToImageFormat } from './utils'
 
 test('parseRawQuery', () => {
   expect(parseRawQuery('')).toEqual({});
@@ -29,4 +29,13 @@ test('queryParamsToParamValues', () => {
     { name: 'title', type: ParamType.String, demoValue: 'Demo title' },
     { name: 'description', type: ParamType.String, demoValue: 'Demo description' },
   ], null)).toEqual({});
+});
+
+test('routeParamsToImageFormat', () => {
+  expect(routeParamsToImageFormat('jpg')).toEqual('jpeg');
+  expect(routeParamsToImageFormat('jpeg')).toEqual('jpeg');
+  expect(routeParamsToImageFormat('png')).toEqual('png');
+  expect(routeParamsToImageFormat('webp')).toEqual('webp');
+  expect(routeParamsToImageFormat(null)).toEqual('jpeg');
+  expect(() => routeParamsToImageFormat('doc')).toThrow();
 });

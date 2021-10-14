@@ -9,3 +9,8 @@
     "@resoc/create-img-core",
     "@netlify/functions"
   ]
+
+[[redirects]]
+  from = "/templates/:template/images/open-graph*"
+  to = "/.netlify/functions/open-graph"
+  status = 200

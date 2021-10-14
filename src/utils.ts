@@ -23,3 +23,19 @@ export const queryParamsToParamValues = (
 
   return values;
 }
+
+export const routeParamsToImageFormat = (formatParam: string | undefined | null): 'png' | 'jpeg' | 'webp' => {
+  switch(formatParam) {
+    case('jpg'):
+    case('jpeg'):
+      return 'jpeg';
+    case('png'):
+    case('webp'):
+      return formatParam;
+    case(null):
+    case(undefined):
+      return 'jpeg';
+    default:
+      throw `Unsupported output image format '${formatParam}'`;
+  }
+}
