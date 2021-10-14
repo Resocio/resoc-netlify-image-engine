@@ -28,7 +28,8 @@ the template manifests will be `resoc-templates/t01/resoc.manifest.json` and
 
 Deploy your engine to Netlify:
 - Login or sign up to [Netlify](https://www.netlify.com/).
-- Create a new Netlify site and associate it with your engine GitHub repository. Once the setup is completed, Netlify deploys your engine.
+- [Create a new Netlify site](https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/)
+and associate it with your engine GitHub repository. Once the setup is completed, Netlify deploys your engine.
 
 Test your engine:
 - Get your engine URL from the Netlify dashboard, eg `https://my-own-resoc-netlify-image-engine.netlify.app`.
