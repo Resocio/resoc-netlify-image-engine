@@ -1,5 +1,6 @@
 [build]
   publish = "resoc-templates"
+  command = "npm run build-templates-list"
 
 [functions]
   directory = "functions/"
@@ -21,4 +22,9 @@
 [[redirects]]
   from = "/templates/:template/content/*"
   to = "/:template/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/templates"
+  to = "/templates-list.json"
   status = 200

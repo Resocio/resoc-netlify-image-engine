@@ -8,8 +8,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "declaration": true,
-    "types": [ "@types/jest" ]
+    "declaration": true
   },
   "include": ["functions"]
 }
