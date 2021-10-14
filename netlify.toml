@@ -11,6 +11,6 @@
   ]
 
 [[redirects]]
-  from = "/templates/:template/images/open-graph*"
-  to = "/.netlify/functions/open-graph"
+  from = "/templates/:template/images/:dimensions*"
+  to = "/.netlify/functions/image"
   status = 200

@@ -1,4 +1,4 @@
-import { ImageTemplate, ParamValue, ParamValues, TemplateParam } from '@resoc/core'
+import { FacebookOpenGraph, ImageResolution, ImageTemplate, ParamValue, ParamValues, TemplateParam, TwitterCard } from '@resoc/core'
 import queryString, { ParsedQuery } from 'query-string'
 
 interface EventQueryStringParameters {
@@ -37,5 +37,27 @@ export const parseImageFormat = (formatParam: string | undefined | null): 'png' 
       return 'jpeg';
     default:
       throw `Unsupported output image format '${formatParam}'`;
+  }
+}
+
+export const parseDimensions = (dimsParam: string | undefined | null): ImageResolution => {
+  switch(dimsParam) {
+    case('open-graph'):
+      return FacebookOpenGraph;
+    case('twitter-card'):
+      return TwitterCard;
+    case(null):
+    case(undefined):
+      throw "No dimensions";
+  }
+
+  const matcher = dimsParam.match(/(\d+)x(\d+)/);
+  if (!matcher) {
+    throw `Invalid image dimensions: ${dimsParam}`;
+  }
+
+  return {
+    width: parseInt(matcher[1]),
+    height: parseInt(matcher[2])
   }
 }

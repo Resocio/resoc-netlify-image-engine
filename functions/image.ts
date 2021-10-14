@@ -7,11 +7,11 @@ import { loadLocalTemplate, renderLocalTemplate, convertUrlToImage } from '@reso
 import { ScreenshotOptions } from 'puppeteer-core'
 import Route from 'route-parser'
 
-import { parseRawQuery, queryParamsToParamValues, parseImageFormat } from '../src/utils'
+import { parseRawQuery, queryParamsToParamValues, parseImageFormat, parseDimensions } from '../src/utils'
 
 export const handler: Handler = async (event, context) => {
   try {
-    const route = new Route('/templates/:template/images/open-graph.:format');
+    const route = new Route('/templates/:template/images/:dimensions.:format');
     const routeParams = route.match(event.path);
     if (!routeParams) {
       throw "Internal error: no route parameters";
@@ -22,11 +22,12 @@ export const handler: Handler = async (event, context) => {
     const templateDir = `resoc-templates/${templateName}`;
     const template = await loadLocalTemplate(`${templateDir}/resoc.manifest.json`);
     const paramValues = queryParamsToParamValues(template.parameters, parseRawQuery(event.rawQuery));
+    const imageDimensions = parseDimensions(routeParams['dimensions']);
 
     const htmlPath = await renderLocalTemplate(
       template,
       paramValues,
-      FacebookOpenGraph,
+      imageDimensions,
       templateDir
     );
 

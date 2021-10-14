@@ -1,5 +1,5 @@
 import { ParamType } from '@resoc/core';
-import { parseRawQuery, queryParamsToParamValues, routeParamsToImageFormat } from './utils'
+import { parseDimensions, parseRawQuery, queryParamsToParamValues, parseImageFormat } from './utils'
 
 test('parseRawQuery', () => {
   expect(parseRawQuery('')).toEqual({});
@@ -38,4 +38,13 @@ test('parseImageFormat', () => {
   expect(parseImageFormat('webp')).toEqual('webp');
   expect(parseImageFormat(null)).toEqual('jpeg');
   expect(() => parseImageFormat('doc')).toThrow();
+});
+
+test('parseDimensions', () => {
+  expect(parseDimensions('open-graph')).toEqual({ width: 1200, height: 630 });
+  expect(parseDimensions('twitter-card')).toEqual({ width: 1500, height: 750 });
+  expect(parseDimensions('456x987')).toEqual({ width: 456, height: 987 });
+  expect(() => parseDimensions('NOPE')).toThrow();
+  expect(() => parseDimensions(null)).toThrow();
+  expect(() => parseDimensions(undefined)).toThrow();
 });
