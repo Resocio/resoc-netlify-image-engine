@@ -22,31 +22,37 @@ Add your own Resoc image templates:
 - Remove the demo template in `resoc-templates`. In other words, remove `resoc-templates/title-description`.
 - Copy your existing image templates to `resoc-templates`.
 For example, if you have two templates named `t01` and `t02`,
-the template manifests will be in `resoc-templates/t01/resoc.manifest.json` and
+the template manifests will be `resoc-templates/t01/resoc.manifest.json` and
 `resoc-templates/t02/resoc.manifest.json`.
 - Commit and push your changes.
 
 Deploy your engine to Netlify:
 - Login or sign up to [Netlify](https://www.netlify.com/).
-- Create a new Netlify site and associate it with your engine GitHub repository.
+- Create a new Netlify site and associate it with your engine GitHub repository. Once the setup is completed, Netlify deploys your engine.
 
 Test your engine:
 - Get your engine URL from the Netlify dashboard, eg `https://my-own-resoc-netlify-image-engine.netlify.app`.
 - Visit `[your engine URL]/templates`. You should get a JSON document listing your templates.
 - Visit `[your engine URL]/templates/[your template name]/demos/open-graph.jpg`.
 For example, if you have a template named `t01`, visit `[your engine URL]/templates/t01/demos/open-graph.jpg`.
-You should get an image.
+You should get a demo image.
 
-## Routes
+## API entry points
+
+The following entry points are available:
 
 - Template content (manifest, etc.):
-`/templates/[template-name]/content/[file-name]`,
-for example `/templates/title-description/content/resoc.manifest.json`
+`/templates/[template-name]/content/[file-name]`.
+For example `/templates/my-template/content/resoc.manifest.json`.
 - Image generation:
-  - GET: `/templates/[template-name]/images/[dimensions].[format]?[parameters]`,
-for example `/templates/title-description/images/open-graph.jpg?title=Hello`
-  - POST: `/templates/[template-name]/images/[dimensions].[format]`,
-for example `/templates/title-description/images/open-graph.jpg`
-The body is expected to be a JSON containing parameter values, eg. `{ "title": "Hello" }`
-- Demo image: `/templates/[template-name]/demos/[dimensions].[format]`,
-for example `/templates/title-description/demos/twitter-card.jpg`
+  - GET: `/templates/[template-name]/images/[dimensions].[format]?[parameters]`.
+For example `/templates/my-template/images/open-graph.jpg?title=Hello`.
+  - POST: `/templates/[template-name]/images/[dimensions].[format]`.
+For example `/templates/my-template/images/open-graph.jpg`.
+The body is expected to be a JSON containing parameter values, eg. `{ "title": "Hello" }`.
+- Demo image: `/templates/[template-name]/demos/[dimensions].[format]`.
+For example `/templates/title-description/demos/twitter-card.jpg`
+
+In the entry points above:
+- `[dimensions]` can be `open-graph`, `twitter-card` or an arbitrary resolution such as `1000x800`.
+- `[format]` can be `jpg`, `jpeg` or `png`.
