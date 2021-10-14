@@ -6,6 +6,8 @@ import { FacebookOpenGraph } from '@resoc/core'
 import { loadLocalTemplate, renderLocalTemplate, convertUrlToImage } from '@resoc/create-img-core'
 import { ScreenshotOptions } from 'puppeteer-core'
 
+import { paramValuesFromQueryParams } from '../src/utils'
+
 const handler: Handler = async (event, context) => {
   try {
     const browser = await chromium.puppeteer.launch({
@@ -17,7 +19,8 @@ const handler: Handler = async (event, context) => {
     const templateDir = 'resoc-templates/title-description';
     const template = await loadLocalTemplate(`${templateDir}/resoc.manifest.json`);
     const htmlPath = await renderLocalTemplate(
-      template, { title: 'Hello', description: 'From Netlify' },
+      template,
+      paramValuesFromQueryParams(template.parameters, event.queryStringParameters),
       FacebookOpenGraph,
       templateDir
     );
