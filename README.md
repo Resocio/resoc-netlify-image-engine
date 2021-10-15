@@ -26,6 +26,14 @@ the template manifests will be `resoc-templates/t01/resoc.manifest.json` and
 `resoc-templates/t02/resoc.manifest.json`.
 - Commit and push your changes.
 
+*[Optional]* Configure the Cross-origin resource sharing (CORS):
+- In `netlify.toml`, edit the `Access-Control-Allow-Origin` header.
+For example, if your engine is to be used by the
+[Social Images WordPress plugin](https://wordpress.org/plugins/resoc/)
+and your WordPress site is available at `https://blog.example.com`,
+set `Access-Control-Allow-Origin = "https://blog.example.com"`
+- Commit and push your changes.
+
 Deploy your engine to Netlify:
 - Login or sign up to [Netlify](https://www.netlify.com/).
 - [Create a new Netlify site](https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/)
