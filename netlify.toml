@@ -28,3 +28,8 @@
   from = "/templates"
   to = "/templates-list.json"
   status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
