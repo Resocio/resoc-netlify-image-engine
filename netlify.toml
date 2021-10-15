@@ -15,13 +15,13 @@
   ]
 
 [[redirects]]
-  from = "/templates/:template/:requestType/:dimensions*"
-  to = "/.netlify/functions/image"
+  from = "/templates/:template/content/*"
+  to = "/:template/:splat"
   status = 200
 
 [[redirects]]
-  from = "/templates/:template/content/*"
-  to = "/:template/:splat"
+  from = "/templates/:template/:requestType/:dimensions*"
+  to = "/.netlify/functions/image"
   status = 200
 
 [[redirects]]
