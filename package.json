@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "build-templates-list": "ts-node src/build-templates-list.ts"
+    "build-templates-list": "ts-node src/build-templates-list.ts",
+    "build": "npm run build-templates-list"
   },
   "repository": {
     "type": "git",
