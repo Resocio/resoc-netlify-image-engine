@@ -7,7 +7,7 @@ import { loadLocalTemplate, renderLocalTemplate, convertUrlToImage } from '@reso
 import { ScreenshotOptions } from 'puppeteer-core'
 import Route from 'route-parser'
 
-import { parseRawQuery, queryParamsToParamValues, parseImageFormat, parseDimensions, parseRequestType } from '../src/utils'
+import { parseRawQuery, queryParamsToParamValues, parseImageFormat, parseDimensions, parseRequestType } from '../src/functions/utils'
 
 export const handler: Handler = async (event, context) => {
   try {
