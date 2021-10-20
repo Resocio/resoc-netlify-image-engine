@@ -22,7 +22,7 @@ const TemplateCard = (props: TemplateCardProps) => {
       </div>
       <Card.Body>
         <Card.Title>{props.name}</Card.Title>
-        <Button variant="primary" onClick={props.onSelect}>Use it</Button>
+        <Button variant="primary" onClick={props.onSelect}>Select</Button>
       </Card.Body>
     </Card>
   )
