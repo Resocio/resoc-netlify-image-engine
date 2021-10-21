@@ -51,15 +51,13 @@ const CreateImage = (props: CreateImageProps) => {
         </a>
       </p>
 
-      <h2>API</h2>
-
-      <h3>GET request</h3>
+      <h2>GET request</h2>
       <CodeBlock
         commandLine
         code={cmdGet}
       />
 
-      <h3>POST request</h3>
+      <h2>POST request</h2>
       <CodeBlock
         commandLine
         code={cmdPost}

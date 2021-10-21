@@ -18,7 +18,7 @@ const TemplateEditor = (props: TemplateEditorProps) => {
 
   return (
     <>
-      <Row>
+      <Row className="mb-3">
         <Col md={6}>
           <ScaledElement className="border">
             <TemplatePreview
