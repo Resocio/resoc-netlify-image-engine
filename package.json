@@ -29,16 +29,10 @@
     "@resoc/core": "^0.8.1",
     "@resoc/create-img-core": "^0.8.1",
     "axios": "^0.23.0",
-    "bootstrap": "^5.1.1",
     "chrome-aws-lambda": "^10.1.0",
-    "copy-text-to-clipboard": "^3.0.1",
     "puppeteer-core": "^10.4.0",
     "query-string": "^7.0.1",
-    "react": "^17.0.2",
-    "react-bootstrap": "^2.0.0-rc.1",
-    "react-dom": "^17.0.2",
-    "route-parser": "0.0.5",
-    "styled-components": "^5.3.3"
+    "route-parser": "0.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
