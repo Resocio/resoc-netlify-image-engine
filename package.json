@@ -6,13 +6,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "delete-out": "rimraf out",
-    "mkdir-out": "make-dir out",
-    "copy-templates": "cpy --parents resoc-templates out",
-    "copy-public": "cpy public/* out",
     "build-templates-list": "ts-node src/build/build-templates-list.ts",
-    "bundle": "webpack",
-    "build": "npm run delete-out && npm run mkdir-out && npm run build-templates-list && npm run copy-templates && npm run copy-public && npm run bundle",
+    "build": "npm run build-templates-list",
     "storybook": "start-storybook -p 6006 -s ./resoc-templates",
     "build-storybook": "build-storybook"
   },

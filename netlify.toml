@@ -1,5 +1,5 @@
 [build]
-  publish = "out"
+  publish = "resoc-templates"
   command = "npm run build"
 
 [functions]
@@ -16,7 +16,7 @@
 
 [[redirects]]
   from = "/templates/:template/content/*"
-  to = "resoc-templates/:template/:splat"
+  to = "/:template/:splat"
   status = 200
 
 [[redirects]]
