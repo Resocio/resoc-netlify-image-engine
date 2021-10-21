@@ -27,7 +27,7 @@ const CodeBlock = (props: CodeBlockProps) => {
       <Code className="m-0">{props.commandLine && <span className="text-primary">$ </span>}{props.code}</Code>
       <Button
         variant="outline-primary"
-        className="me-2"
+        className="ms-2"
         size="sm"
         onClick={() => copy(props.code)}
       >
