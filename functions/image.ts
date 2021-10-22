@@ -3,10 +3,13 @@ import { Handler } from '@netlify/functions'
 import path from 'path'
 import chromium from 'chrome-aws-lambda'
 import { demoParamValues, FacebookOpenGraph, ParamValue, ParamValues } from '@resoc/core'
-import { loadLocalTemplate, renderLocalTemplate, convertUrlToImage } from '@resoc/create-img-core'
+//import { loadLocalTemplate, renderLocalTemplate, convertUrlToImage } from '@resoc/create-img-core'
 import { ScreenshotOptions } from 'puppeteer-core'
 
 import { parseRawQuery, queryParamsToParamValues, parseImageFormat, parseDimensions, parseRequestType, parseImageRequest } from '../src/utils'
+import { loadLocalTemplate } from '../src/local'
+import { renderLocalTemplate } from '../src/compile'
+import { convertUrlToImage } from '../src/puppeteer'
 
 export const handler: Handler = async (event, context) => {
   try {

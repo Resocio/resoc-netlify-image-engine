@@ -5,5 +5,3 @@ node_modules
 
 # Generated at build time
 resoc-templates/templates-list.json
-
-package-lock.json
