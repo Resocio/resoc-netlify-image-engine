@@ -32,7 +32,9 @@ export const queryParamsToParamValues = (
   return values;
 }
 
-export const parseImageFormat = (formatParam: string | undefined | null): 'png' | 'jpeg' | 'webp' => {
+export type ImageFormat = 'png' | 'jpeg' | 'webp';
+
+export const parseImageFormat = (formatParam: string | undefined | null): ImageFormat => {
   switch(formatParam) {
     case('jpg'):
     case('jpeg'):
@@ -70,7 +72,9 @@ export const parseDimensions = (dimsParam: string | undefined | null): ImageReso
   }
 }
 
-export const parseRequestType = (requestTypeParam: string | undefined | null): 'image' | 'demo' => {
+export type RequestType = 'image' | 'demo';
+
+export const parseRequestType = (requestTypeParam: string | undefined | null): RequestType => {
   switch(requestTypeParam) {
     case('images'):
       return 'image';
@@ -80,3 +84,24 @@ export const parseRequestType = (requestTypeParam: string | undefined | null): '
       throw `Invalid request type: ${requestTypeParam}`;
   }
 }
+
+export type ImageRequest = {
+  template: string;
+  format: ImageFormat;
+  resolution: ImageResolution;
+  type: 'image' | 'demo';
+};
+
+export const parseImageRequest = (request: string): ImageRequest | null => {
+  const match = request.match(/\/templates\/([\w-]+)\/(\w+)\/([\w-]+)\.(\w+)/);
+  if (!match) {
+    return null;
+  }
+
+  return {
+    template: match[1],
+    type: parseRequestType(match[2]),
+    resolution: parseDimensions(match[3]),
+    format: parseImageFormat(match[4])
+  }
+};

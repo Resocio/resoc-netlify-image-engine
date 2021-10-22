@@ -1,5 +1,6 @@
-import { ParamType } from '@resoc/core';
-import { parseDimensions, parseRawQuery, queryParamsToParamValues, parseImageFormat, parseRequestType } from './utils'
+import { FacebookOpenGraph, ParamType } from '@resoc/core';
+import { hasUncaughtExceptionCaptureCallback } from 'process';
+import { parseDimensions, parseRawQuery, queryParamsToParamValues, parseImageFormat, parseRequestType, parseImageRequest } from './utils'
 
 test('parseRawQuery', () => {
   expect(parseRawQuery('')).toEqual({});
@@ -56,4 +57,23 @@ test('parseRequestType', () => {
   expect(() => parseRequestType('WHAT')).toThrow();
   expect(() => parseRequestType(null)).toThrow();
   expect(() => parseRequestType(undefined)).toThrow();
+});
+
+test('parseImageRequest', () => {
+  expect(parseImageRequest('/templates/my-template/images/open-graph.jpg')).toEqual({
+    template: 'my-template',
+    format: 'jpeg',
+    resolution: FacebookOpenGraph,
+    type: 'image'
+  });
+
+  expect(parseImageRequest('/templates/basic01/demos/789x678.png')).toEqual({
+    template: 'basic01',
+    format: 'png',
+    resolution: {
+      width: 789,
+      height: 678
+    },
+    type: 'demo'
+  });
 });
