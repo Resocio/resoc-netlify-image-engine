@@ -5,6 +5,7 @@ test('parseRawQuery', () => {
   expect(parseRawQuery('')).toEqual({});
   expect(parseRawQuery('title=Hello')).toEqual({ title: 'Hello'});
   expect(parseRawQuery('title=Hello&description=World')).toEqual({ title: 'Hello', description: 'World' });
+  expect(parseRawQuery('title=Hello&description=brave%20new%20world%21')).toEqual({ title: 'Hello', description: 'brave new world!' });
 });
 
 test('queryParamsToParamValues', () => {

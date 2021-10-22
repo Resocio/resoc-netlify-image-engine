@@ -1,13 +1,21 @@
 import { FacebookOpenGraph, ImageResolution, ImageTemplate, ParamValue, ParamValues, TemplateParam, TwitterCard } from '@resoc/core'
-import queryString, { ParsedQuery } from 'query-string'
 
 interface EventQueryStringParameters {
   [name: string]: string | undefined
 }
 
-export const parseRawQuery = (rawQuery: string): ParsedQuery => (
-  queryString.parse(rawQuery)
-)
+type ParsedQuery = { [name: string]: string };
+
+export const parseRawQuery = (rawQuery: string): ParsedQuery => {
+  const parsed: ParsedQuery = {};
+  rawQuery.split('&').forEach(p => {
+    const [ name, value ] = p.split('=');
+    if (name && value) {
+      parsed[name] = decodeURIComponent(value);
+    }
+  });
+  return parsed;
+};
 
 export const queryParamsToParamValues = (
   templateParams: TemplateParam[], queryParams: ParsedQuery
