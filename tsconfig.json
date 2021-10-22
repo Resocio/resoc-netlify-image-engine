@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
-    "lib": ["esnext"],
+    "lib": ["dom", "esnext"],
+    "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "strict": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "declaration": true
+    "declaration": true,
+    "outDir": "types",
   },
   "include": ["functions"]
 }

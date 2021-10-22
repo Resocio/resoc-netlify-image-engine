@@ -1,6 +1,6 @@
 [build]
-  publish = "resoc-templates"
-  command = "npm run build-templates-list"
+  publish = "out"
+  command = "npm run build"
 
 [functions]
   directory = "functions/"
@@ -10,13 +10,12 @@
     "chrome-aws-lambda",
     "puppeteer-core",
     "@resoc/core",
-    "@resoc/create-img-core",
     "@netlify/functions"
   ]
 
 [[redirects]]
   from = "/templates/:template/content/*"
-  to = "/:template/:splat"
+  to = "resoc-templates/:template/:splat"
   status = 200
 
 [[redirects]]
@@ -38,6 +37,3 @@
   for = "/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
-
-[build.environment]
-NODE_VERSION = "12.18.0"

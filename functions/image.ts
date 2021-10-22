@@ -6,10 +6,10 @@ import { demoParamValues, FacebookOpenGraph, ParamValue, ParamValues } from '@re
 //import { loadLocalTemplate, renderLocalTemplate, convertUrlToImage } from '@resoc/create-img-core'
 import { ScreenshotOptions } from 'puppeteer-core'
 
-import { parseRawQuery, queryParamsToParamValues, parseImageFormat, parseDimensions, parseRequestType, parseImageRequest } from '../src/utils'
-import { loadLocalTemplate } from '../src/local'
-import { renderLocalTemplate } from '../src/compile'
-import { convertUrlToImage } from '../src/puppeteer'
+import { parseRawQuery, queryParamsToParamValues, parseImageFormat, parseDimensions, parseRequestType, parseImageRequest } from '../src/functions/utils'
+import { loadLocalTemplate } from '../src/functions/local'
+import { renderLocalTemplate } from '../src/functions/compile'
+import { convertUrlToImage } from '../src/functions/puppeteer'
 
 export const handler: Handler = async (event, context) => {
   try {

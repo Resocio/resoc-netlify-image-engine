@@ -15,7 +15,7 @@ import Mustache from 'mustache'
 import { convertUrlToImage } from './puppeteer'
 import { v4 as uuidv4 } from 'uuid'
 import copy from 'recursive-copy'
-import type { Browser, ScreenshotOptions } from 'puppeteer'
+import type { Browser, ScreenshotOptions } from 'puppeteer-core'
 
 type LocalTemplateOptions = {
   cache?: boolean;

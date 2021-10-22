@@ -1,4 +1,4 @@
-import type { Browser, ScreenshotOptions } from 'puppeteer'
+import type { Browser, ScreenshotOptions } from 'puppeteer-core'
 
 export const convertUrlToImage = async (url: string, outputOptions: ScreenshotOptions, browser: Browser): Promise<string | void | Buffer> => {
   const page = await browser.newPage();

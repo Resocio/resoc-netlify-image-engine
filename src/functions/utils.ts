@@ -32,7 +32,7 @@ export const queryParamsToParamValues = (
   return values;
 }
 
-export type ImageFormat = 'png' | 'jpeg' | 'webp';
+export type ImageFormat = 'png' | 'jpeg';
 
 export const parseImageFormat = (formatParam: string | undefined | null): ImageFormat => {
   switch(formatParam) {
@@ -40,7 +40,6 @@ export const parseImageFormat = (formatParam: string | undefined | null): ImageF
     case('jpeg'):
       return 'jpeg';
     case('png'):
-    case('webp'):
       return formatParam;
     case(null):
     case(undefined):
