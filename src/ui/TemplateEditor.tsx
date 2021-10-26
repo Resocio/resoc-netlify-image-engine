@@ -18,15 +18,17 @@ const TemplateEditor = (props: TemplateEditorProps) => {
     <>
       <Row className="mb-3">
         <Col md={6}>
-          <ScaledElement className="border">
-            <TemplatePreview
-              template={props.template}
-              width={FacebookOpenGraph.width}
-              height={FacebookOpenGraph.height}
-              parameters={values}
-              baseUrl={props.baseUrl}
-            />
-          </ScaledElement>
+          <div className="border">
+            <ScaledElement>
+              <TemplatePreview
+                template={props.template}
+                width={FacebookOpenGraph.width}
+                height={FacebookOpenGraph.height}
+                parameters={values}
+                baseUrl={props.baseUrl}
+              />
+            </ScaledElement>
+          </div>
         </Col>
         <Col md={6}>
           <TemplateParameters
