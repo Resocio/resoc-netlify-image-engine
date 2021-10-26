@@ -12,7 +12,9 @@
     "copy-public": "cpy public/* out",
     "build-templates-list": "ts-node src/build/build-templates-list.ts",
     "bundle": "webpack --mode production",
-    "build": "npm run delete-out && npm run mkdir-out && npm run build-templates-list && npm run copy-templates && npm run copy-public && npm run bundle"
+    "build": "npm run delete-out && npm run mkdir-out && npm run build-templates-list && npm run copy-templates && npm run copy-public && npm run bundle",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -48,6 +50,12 @@
     "@babel/core": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
     "@babel/preset-typescript": "^7.15.0",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/builder-webpack5": "^6.3.12",
+    "@storybook/manager-webpack5": "^6.3.12",
+    "@storybook/react": "^6.3.12",
     "@types/aws-lambda": "^8.10.84",
     "@types/jest": "^27.0.2",
     "@types/mustache": "^4.1.2",
@@ -56,6 +64,7 @@
     "@types/react-dom": "^17.0.10",
     "@types/styled-components": "^5.1.15",
     "@types/uuid": "^8.3.1",
+    "babel-loader": "^8.2.3",
     "cpy-cli": "^3.1.1",
     "jest": "^27.3.1",
     "make-dir-cli": "^3.0.0",

@@ -1,5 +1,6 @@
 import { ImageResolution, ParamValues } from '@resoc/core';
 import React, { useEffect, useState } from 'react'
+import { Spinner } from 'react-bootstrap';
 import CodeBlock from './CodeBlock';
 import { Template } from './Types';
 import { imageGetUrl, imageUrl } from './Utils';
@@ -13,6 +14,7 @@ export type CreateImageProps = {
 
 const CreateImage = (props: CreateImageProps) => {
   const [ baseUrl, setBaseUrl ] = useState<string | null>(null);
+  const [ downloadIndicator, setDownloadIndicator ] = useState<boolean>(false);
 
   useEffect(() => {
     if (!baseUrl) {
@@ -46,8 +48,23 @@ const CreateImage = (props: CreateImageProps) => {
           href={`${baseUrl}${imageGetPath}`}
           download
           className="btn btn-primary"
+          onClick={() => {
+            setDownloadIndicator(true);
+            setTimeout(() => {
+              setDownloadIndicator(false);
+            }, 2000);
+          }}
         >
-          Download as an image
+          {downloadIndicator ? (
+            <>
+              <Spinner animation="border" role="status" size="sm" className="me-2">
+                <span className="visually-hidden">Generating your image...</span>
+              </Spinner>
+              Generating your image...
+            </>
+          ) : (
+            <>Download as an image</>
+          )}
         </a>
       </p>
 
