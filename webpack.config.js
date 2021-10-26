@@ -19,4 +19,5 @@ module.exports = {
     filename: 'index.js',
     path: path.resolve(__dirname, 'out'),
   },
+  performance: { hints: false }
 };

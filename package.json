@@ -11,7 +11,7 @@
     "copy-templates": "cpy --parents resoc-templates out",
     "copy-public": "cpy public/* out",
     "build-templates-list": "ts-node src/build/build-templates-list.ts",
-    "bundle": "webpack",
+    "bundle": "webpack --mode production",
     "build": "npm run delete-out && npm run mkdir-out && npm run build-templates-list && npm run copy-templates && npm run copy-public && npm run bundle"
   },
   "repository": {
