@@ -13,7 +13,7 @@
     "build-templates-list": "ts-node src/build/build-templates-list.ts",
     "bundle": "webpack --mode production",
     "build": "npm run delete-out && npm run mkdir-out && npm run build-templates-list && npm run copy-templates && npm run copy-public && npm run bundle",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 -s ./resoc-templates",
     "build-storybook": "build-storybook"
   },
   "repository": {
