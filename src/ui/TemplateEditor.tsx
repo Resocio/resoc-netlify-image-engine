@@ -7,13 +7,11 @@ import TemplateParameters from './TemplateParameters';
 import { Template } from './Types';
 import { imageGetUrl } from './Utils';
 
-export type TemplateEditorProps = {
-  template: Template;
-};
+export type TemplateEditorProps = {} & Template;
 
 const TemplateEditor = (props: TemplateEditorProps) => {
   const [values, setValues] = useState<ParamValues>(
-    demoParamValues(props.template.template.parameters)
+    demoParamValues(props.template.parameters)
   );
 
   return (
@@ -22,17 +20,17 @@ const TemplateEditor = (props: TemplateEditorProps) => {
         <Col md={6}>
           <ScaledElement className="border">
             <TemplatePreview
-              template={props.template.template}
+              template={props.template}
               width={FacebookOpenGraph.width}
               height={FacebookOpenGraph.height}
               parameters={values}
-              baseUrl={props.template.baseUrl}
+              baseUrl={props.baseUrl}
             />
           </ScaledElement>
         </Col>
         <Col md={6}>
           <TemplateParameters
-            parameters={props.template.template.parameters}
+            parameters={props.template.parameters}
             values={values}
             onChange={(newValues) => {
               setValues(newValues);
@@ -42,10 +40,10 @@ const TemplateEditor = (props: TemplateEditorProps) => {
       </Row>
 
       <CreateImage
-        template={props.template}
         format="jpg"
         resolution={FacebookOpenGraph}
         values={values}
+        {...props}
       />
     </>
   );

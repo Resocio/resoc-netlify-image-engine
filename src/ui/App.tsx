@@ -52,7 +52,7 @@ const App = () => {
           </a> / {selectedTemplate.name}
         </h2>
 
-        <TemplateEditor template={selectedTemplate} />
+        <TemplateEditor {...selectedTemplate} />
       </>
     );
   } else {

@@ -13,11 +13,9 @@ const Template: ComponentStory<typeof CreateImage> = (args) => <CreateImage {...
 
 export const Primary = Template.bind({});
 Primary.args = {
+  name: 'basic01',
   template: {
-    name: 'basic01',
-    template: {
-      parameters: [ { name: 'title', type: ParamType.String, demoValue: 'Hello!' }]
-    }
+    parameters: [ { name: 'title', type: ParamType.String, demoValue: 'Hello!' }]
   },
   resolution: FacebookOpenGraph,
   format: 'jpg',

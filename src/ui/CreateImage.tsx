@@ -6,11 +6,10 @@ import { Template } from './Types';
 import { imageGetUrl, imageUrl } from './Utils';
 
 export type CreateImageProps = {
-  template: Template;
   resolution: ImageResolution;
   format: 'png' | 'jpg';
   values: ParamValues;
-};
+} & Template;
 
 const CreateImage = (props: CreateImageProps) => {
   const [ baseUrl, setBaseUrl ] = useState<string | null>(null);
@@ -23,16 +22,16 @@ const CreateImage = (props: CreateImageProps) => {
   });
 
   const imageGetPath = imageGetUrl(
-    props.template.name,
+    props.name,
     props.resolution,
     props.format,
-    props.template.template.parameters,
+    props.template.parameters,
     props.values
   );
   const cmdGet = `curl -o my-image.${props.format} ${baseUrl}${imageGetPath}`;
 
   const imagePostPath = imageUrl(
-    props.template.name,
+    props.name,
     props.resolution,
     props.format,
   );
