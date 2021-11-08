@@ -12,7 +12,7 @@ export type TemplateListProps = {
 const TemplateList = (props: TemplateListProps) => (
   <Row>
     {props.templates.map(t => (
-      <Col md={4}>
+      <Col md={4} className="mb-4">
         <TemplateCard
           name={t.name}
           onSelect={() => props.onTemplateSelected(t) }
